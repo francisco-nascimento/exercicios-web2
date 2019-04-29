@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Contatos :: Adicionar</title>
+</head>
+<body>
+	<form th:action="@{/exerc02/add}" th:object="${contato}" method="post">
+		<div>Nome: <input type="text" th:field="*{nome}" />
+		</div>
+		<div>Telefone: <input type="text" th:field="*{telefone}" />
+		</div>
+		<div><button type="submit">Salvar</button>
+		</div>
+	</form>
+	<h2 th:text="${contato.nome}"></h2>
+</body>
+</html>
