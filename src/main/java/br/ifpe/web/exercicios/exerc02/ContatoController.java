@@ -14,14 +14,13 @@ public class ContatoController {
 	@GetMapping("/")
 	public ModelAndView exibirAddContato( ) {
 		ModelAndView mv = new ModelAndView("exerc02/contatos-add");
-	//	mv.addObject("contato", new Contato());
+		mv.addObject("contato", new Contato());
 		return mv;
 	}
 	
 	@PostMapping("/add")
 	public String addContato(@ModelAttribute Contato contato) {
 		System.out.println(contato);
-	//	contato = new Contato();
 		return "redirect:/exerc02/";
 	}
 	

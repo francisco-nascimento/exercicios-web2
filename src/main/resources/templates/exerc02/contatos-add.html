@@ -6,10 +6,34 @@
 <title>Contatos :: Adicionar</title>
 </head>
 <body>
-	<form th:action="@{/exerc02/add}" th:object="${contato}" method="post">
+	<form th:action="@{/exerc03/add}" th:object="${contato}" method="post">
 		<div>Nome: <input type="text" th:field="*{nome}" />
 		</div>
+		<div>E-mail: <input type="email" th:field="*{email}" />
+		</div>
 		<div>Telefone: <input type="text" th:field="*{telefone}" />
+		</div>
+		<div>App de Mensagens: <br/> 
+			<input type="checkbox" th:field="*{appMensagens}" th:value="WhatsApp"/>WhatsApp &nbsp;&nbsp;&nbsp;
+			<input type="checkbox" th:field="*{appMensagens}" th:value="Telegram"/>Telegram &nbsp;
+			<input type="checkbox" th:field="*{appMensagens}" th:value="Slack"/>Slack &nbsp;
+		</div>
+		<div>Grupo: <br/>
+			<input type="radio" th:field="*{grupo}" th:value="F" />Família <br/>
+			<input type="radio" th:field="*{grupo}" th:value="T"/>Trabalho <br/>
+			<input type="radio" th:field="*{grupo}" th:value="A"/>Amigos <br/>
+		</div>
+		<div>Data Nascimento: 
+			<input type="date" th:field="*{dataNascimento}" />
+		</div>
+		<div>Estado 
+			<select th:field="*{estadoNatal}">
+				<option th:value="''">Selecione</option>
+				<option th:value="PA">PA</option>
+				<option th:value="PB">PB</option>
+				<option th:value="PE">PE</option>
+				<option th:value="PR">PR</option>
+			</select>
 		</div>
 		<div><button type="submit">Salvar</button>
 		</div>
