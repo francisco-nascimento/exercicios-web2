@@ -1,17 +1,11 @@
-package br.ifpe.web.exercicios.exerc02;
+package exerc02_bd;
 
-import java.util.Arrays;
 import java.util.Date;
-
-import javax.persistence.Entity;
-import javax.persistence.Id;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-@Entity
 public class Contato {
 	
-	@Id
 	private String email;
 	private String nome;
 	private String telefone;
@@ -20,7 +14,12 @@ public class Contato {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date dataNascimento;
 	private String estadoNatal;
-	
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 	public String getNome() {
 		return nome;
 	}
@@ -32,12 +31,6 @@ public class Contato {
 	}
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
 	}
 	public String getGrupo() {
 		return grupo;
@@ -63,12 +56,6 @@ public class Contato {
 	public void setEstadoNatal(String estadoNatal) {
 		this.estadoNatal = estadoNatal;
 	}
-	@Override
-	public String toString() {
-		return "Contato [nome=" + nome + ", telefone=" + telefone + ", email=" + email + ", grupo=" + grupo
-				+ ", appMensagens=" + Arrays.toString(appMensagens) + ", dataNascimento=" + dataNascimento
-				+ ", estadoNatal=" + estadoNatal + "]";
-	}
 
-	
+
 }
