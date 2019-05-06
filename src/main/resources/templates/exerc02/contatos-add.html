@@ -6,7 +6,7 @@
 <title>Contatos :: Adicionar</title>
 </head>
 <body>
-	<form th:action="@{/addContato}" th:object="${contato}" method="post">
+	<form th:action="@{/addContato}" th:object="${contato}" method="post">		
 		<div>Nome: <input type="text" th:field="*{nome}" />
 		</div>
 		<div>E-mail: <input type="email" th:field="*{email}" />
@@ -38,6 +38,7 @@
 		<div><button type="submit">Salvar</button>
 		</div>
 	</form>
-	<h2 th:text="${contato.nome}"></h2>
+	<hr/>
+	<a th:href="@{/listarContatos}">Listar contatos</a>
 </body>
 </html>

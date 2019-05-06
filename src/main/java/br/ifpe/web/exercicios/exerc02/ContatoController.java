@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -24,7 +25,28 @@ public class ContatoController {
 	public String addContato(@ModelAttribute Contato contato) {
 		System.out.println(contato);
 		contatoRep.save(contato);
-		return "redirect:/contato";
+		return "redirect:/listarContatos";
+	}
+
+	@GetMapping("/removerContato")
+	public ModelAndView remover(@RequestParam String email) {		
+		contatoRep.deleteById(email);
+		return listar();
 	}
 	
+	@GetMapping("/listarContatos")
+	public ModelAndView listar() {
+		ModelAndView mv = new ModelAndView("exerc02/contatos-list");
+		mv.addObject("lista", contatoRep.findAll());
+		return mv;
+	}
+	
+	@GetMapping("/exibirContato")
+	public ModelAndView exibir(@RequestParam String email) {		
+		ModelAndView mv = new ModelAndView("exerc02/contatos-add");
+		mv.addObject("contato", contatoRep.getOne(email));
+		return mv;
+	}
+
+
 }

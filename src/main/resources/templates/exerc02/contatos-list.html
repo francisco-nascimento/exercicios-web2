@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Contatos :: Listar</title>
+</head>
+<body>
+	<table>
+		<tr>
+			<th>Nome</th>
+			<th>Telefone</th>
+			<th>E-mail</th>
+			<th>Acões</th>
+		</tr>
+		<tr th:each="cont : ${lista}">
+			<td th:text="${cont.nome}"></td>
+			<td th:text="${cont.telefone}"></td>
+			<td th:text="${cont.email}">
+			<td>
+				<a th:href="@{/exibirContato(email=${cont.email})}">Editar</a>&nbsp;&nbsp;
+				<a th:href="@{/removerContato(email=${cont.email})}">Remover</a>
+			</td>
+		</tr>
+	</table>
+	<hr/>
+	<a th:href="@{/contato}">Cadastrar novo contato</a>
+</body>
+</html>
