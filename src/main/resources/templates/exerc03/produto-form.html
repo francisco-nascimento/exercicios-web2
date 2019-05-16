@@ -21,22 +21,24 @@
 		<h2>Cadastro de Produtos</h2>
 		<form th:action="@{/salvarProduto}" th:object="${produto}"
 			method="post">
-			<input type="hidden" th:field="*{codigo}"/>
+			
+			<input type="hidden" th:field="*{codigo}" />
 			<div class="form-group">
 				<label for="nome">Nome:</label> 
-				<input type="text" th:field="*{nome}" />
+					<input type="text" class="has-error"
+					th:field="*{nome}" name="nome" autofocus="autofocus"/>
 			</div>
 			<div class="form-group">
-				<label for="preco">Preço:</label>
-				<input type="number" step="any" th:field="*{preco}" />
+				<label for="preco">Preço:</label> <input type="number" step="any"
+					th:field="*{preco}" name="preco" />
 			</div>
 			<div class="form-group">
-				<label for="quantidade">Quantidade:</label>
-				<input type="number" th:field="*{quantidade}" />
+				<label for="quantidade">Quantidade:</label> <input type="number"
+					th:field="*{quantidade}" />
 			</div>
 			<div class="form-group">
-				<label for="categoria">Categoria:</label>
-				<select th:field="*{categoria}">
+				<label for="categoria">Categoria:</label> <select
+					th:field="*{categoria}">
 					<option th:each="cat : ${listaCategorias}" th:value="${cat.codigo}"
 						th:text="${cat.nome}"></option>
 				</select>
@@ -44,10 +46,13 @@
 			<div>
 				<button type="submit" class="btn btn-info">Salvar</button>
 			</div>
+			<div class="alert alert-danger" th:if="${#fields.hasAnyErrors()}">
+				<p th:each="err : ${#fields.allErrors()}" th:text="${err}"></p>
+			</div>
 		</form>
 		<hr/ >
 		<div th:if="${produto.codigo == null}">
-			<h3>Lista de Produtos: </h3>
+			<h3>Lista de Produtos:</h3>
 			<table class="table table-striped">
 				<thead>
 					<tr>
@@ -60,15 +65,16 @@
 				</thead>
 				<tbody>
 					<tr th:each="prod : ${listaProdutos}">
-						<td class="text-center" th:text="${prod.codigo}">AA1234</td>
-						<td th:text="${prod.categoria.nome}">Cerveja Stella</td>
-						<td th:text="${prod.nome}">Lager</td>
-						<td th:text="|R$ ${prod.preco}|">Internacional</td>
-						<td class="text-right" th:text="${prod.quantidade}|">R$ 8.00</td>
-						<td class="text-center">
-							<a th:href="@{/editarProduto(codigo=${prod.codigo})}" class="btn btn-info">Editar</a>
-							<a th:href="@{/removerProduto(codigo=${prod.codigo})}" class="btn btn-alert">Remover</a>
-						</td>
+						<td class="text-center" th:text="${prod.codigo}"></td>
+						<td th:text="${prod.categoria.nome}"></td>
+						<td th:text="${prod.nome}"></td>
+						<td th:text="|R$ ${prod.preco}|"></td>
+						<td class="text-right" th:text="${prod.quantidade}|"></td>
+						<td class="text-center"><a
+							th:href="@{/editarProduto(codigo=${prod.codigo})}"
+							class="btn btn-info">Editar</a> <a
+							th:href="@{/removerProduto(codigo=${prod.codigo})}"
+							class="btn btn-alert">Remover</a></td>
 					</tr>
 					<tr th:if="${#lists.isEmpty(listaProdutos)}">
 						<td colspan="7">Nenhum produto encontrado</td>
